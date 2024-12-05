@@ -1,0 +1,25 @@
+name: Deploy Discord Bot
+
+on:
+  push:
+    branches:
+      - main  # Runs when you push to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # This is the environment where your bot will run
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3  # This pulls your code into the workflow
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # Specify the Node.js version (16 is recommended)
+
+    - name: Install dependencies
+      run: npm install  # This will install the dependencies, like discord.js
+
+    - name: Run the bot
+      run: node main.js  # This will run your bot using the main.js file
